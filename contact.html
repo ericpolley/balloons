@@ -5,8 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Balloon Twisting Business</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Initialize EmailJS with your Public Key
+        emailjs.init("CJ5Ac3wozKPv-A9cq");
+
+        // Add submit event listener to the form
+        document
+          .getElementById("contactForm")
+          .addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // Send the form data using EmailJS
+            emailjs
+              .sendForm("service_orwfkol", "template_a0dg138", this)
+              .then(() => {
+                document.getElementById("statusMessage").innerText =
+                  "Message sent successfully!";
+                this.reset(); // Reset the form after successful submission
+              })
+              .catch((error) => {
+                document.getElementById(
+                  "statusMessage"
+                ).innerText = `Failed to send message: ${error.text}`;
+              });
+          });
+      });
+    </script>
     <style>
-      /* Add some custom styling if needed */
+      /* Add custom styles if needed */
     </style>
   </head>
   <body
@@ -14,84 +42,216 @@
   >
     <!-- Header -->
     <header
-      class="flex justify-center items-center w-full sm:h-16 md:h-24 bg-blue-400 flex"
+      class="flex justify-center items-center w-full sm:h-16 md:h-24 bg-blue-400"
     >
-      <!-- Flex container with 3 equal sections -->
       <div class="flex w-full max-w-4xl justify-between">
-        <!-- Section 1 -->
-        <div
-          class="flex-2 text-white flex items-center justify-center"
-        >
-          <h1 class="text-blue-200 text-md lg:text-3xl font-bold shadow-lg hover:text-blue-700 active:text-blue-800">
-            <a href="">
-            Spokane Balloon Dude
-        </a>
+        <div class="flex-2 text-white flex items-center justify-center">
+          <h1
+            class="text-blue-200 text-md lg:text-3xl font-bold hover:text-blue-700 active:text-blue-800"
+          >
+            <a href="/">Spokane Balloon Dude</a>
           </h1>
         </div>
-
-      
-  <!-- Container Div -->
-  <div class="flex items-center justify-center flex-2  ml-2 md:ml-8 md:mr-2">
-
-    <!-- Tiny Image -->
-    <img src="https://cdn.pixabay.com/photo/2013/07/12/16/50/horse-151352_1280.png" alt="Tiny Image" class="md:w-14 w-6  object-center">
-
-  </div>
-
-       
-
-
-
-
-        <!-- Section 3 -->
-        <div class="flex-1 text-white flex items-center justify-center lg:text-2xl">
-            <div class="flex-1 text-white flex items-center justify-center text-xs md:text-2xl hover:text-blue-200 active:text-blue-400"><a href="about.html">About</a></div>
-            <div class="flex-1 text-white flex items-center justify-center text-xs md:text-2xl hover:text-blue-200 active:text-blue-400"><a href="contact.html">Contact</a></div>
-            <div class="flex-1 text-white flex items-center justify-center text-xs md:text-2xl hover:text-blue-200 active:text-blue-400"><a href="pricing.html">Pricing</a></div>
-                <div class="flex-1 text-white flex items-center justify-center text-xs md:text-2xl hover:text-blue-200 active:text-blue-400"><a href="">Home</a></div>
-            </div>
-         
+        <div
+          class="flex items-center justify-center flex-2 ml-2 md:ml-8 md:mr-2"
+        >
+          <img
+            src="https://cdn.pixabay.com/photo/2013/07/12/16/50/horse-151352_1280.png"
+            alt="Tiny Image"
+            class="md:w-14 w-6 object-center"
+          />
+        </div>
+        <div
+          class="flex-1 text-white flex items-center justify-center lg:text-2xl"
+        >
+          <div
+            class="flex-1 text-white text-xs md:text-2xl hover:text-blue-200 active:text-blue-400"
+          >
+            <a href="about.html">About</a>
+          </div>
+          <div
+            class="flex-1 text-white text-xs md:text-2xl hover:text-blue-200 active:text-blue-400"
+          >
+            <a href="contact.html">Contact</a>
+          </div>
+          <div
+            class="flex-1 text-white text-xs md:text-2xl hover:text-blue-200 active:text-blue-400"
+          >
+            <a href="pricing.html">Pricing</a>
+          </div>
+          <div
+            class="flex-1 text-white text-xs md:text-2xl hover:text-blue-200 active:text-blue-400"
+          >
+            <a href="/">Home</a>
+          </div>
         </div>
       </div>
     </header>
-    <!-- HEADER ENDS-->
 
+    <!-- Main Content -->
+    <main class="flex-grow flex justify-center items-center w-[80vw]">
+      <div class="max-w-md mx-auto">
+        <form id="contactForm" class="space-y-4 w-full">
+          <div>
+            <label for="name" class="block text-sm font-medium text-gray-700"
+              >Name</label
+            >
+            <input
+              type="text"
+              id="name"
+              name="user_name"
+              required
+              class="w-full border rounded p-2"
+            />
+          </div>
 
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700"
+              >Email</label
+            >
+            <input
+              type="email"
+              id="email"
+              name="user_email"
+              required
+              class="w-full border rounded p-2"
+            />
+          </div>
 
+          <div>
+            <label for="phone" class="block text-sm font-medium text-gray-700"
+              >Phone Number</label
+            >
+            <input
+              type="tel"
+              id="phone"
+              name="user_phone"
+              required
+              class="w-full border rounded p-2"
+            />
+          </div>
 
-    <!-- Body -->
+          <div>
+            <label
+              for="event_date"
+              class="block text-sm font-medium text-gray-700"
+              >Date of Event</label
+            >
+            <input
+              type="datetime-local"
+              id="event_date"
+              name="event_date"
+              required
+              class="w-full border rounded p-2"
+            />
+          </div>
 
+          <div>
+            <label class="block text-sm font-medium text-gray-700"
+              >Inside or Outside</label
+            >
+            <div class="flex space-x-4">
+              <label>
+                <input
+                  type="radio"
+                  name="location_type"
+                  value="Inside"
+                  required
+                  class="mr-2"
+                />
+                Inside
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="location_type"
+                  value="Outside"
+                  required
+                  class="mr-2"
+                />
+                Outside
+              </label>
+            </div>
+          </div>
 
-    <main class="flex-grow flex justify-center items-center">
-      <p class="text-gray-700 text-lg md:text-2xl">contact</p>
+          <div>
+            <label
+              for="event_type"
+              class="block text-sm font-medium text-gray-700"
+              >Type of Event</label
+            >
+            <input
+              type="text"
+              id="event_type"
+              name="event_type"
+              required
+              class="w-full border rounded p-2"
+            />
+          </div>
+
+          <div>
+            <label
+              for="duration"
+              class="block text-sm font-medium text-gray-700"
+              >Duration</label
+            >
+            <select
+              id="duration"
+              name="duration"
+              required
+              class="w-full border rounded p-2"
+            >
+              <option value="">Select Duration</option>
+              <option value="1 Hour">1 Hour</option>
+              <option value="2 Hours">2 Hours</option>
+              <option value="3 Hours">3 Hours</option>
+              <option value="4 Hours">4 Hours</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="address" class="block text-sm font-medium text-gray-700"
+              >Event Address</label
+            >
+            <input
+              type="text"
+              id="address"
+              name="user_address"
+              required
+              class="w-full border rounded p-2"
+            />
+          </div>
+
+          <div>
+            <label for="message" class="block text-sm font-medium text-gray-700"
+              >Message</label
+            >
+            <textarea
+              id="message"
+              name="message"
+              rows="4"
+              required
+              class="w-full border rounded p-2"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="px-4 py-2 font-semibold text-white bg-indigo-600 rounded hover:bg-indigo-500"
+          >
+            Send
+          </button>
+        </form>
+
+        <div id="statusMessage" class="mt-4 text-sm"></div>
+      </div>
     </main>
 
-
-
-
-
-
-
-
-
-
-
     <!-- Footer -->
-    <footer class="flex justify-center items-center w-full h-16 bg-blue-400 flex">
-        <div class="md:flex-1"></div>
-        <div class="flex-1 items-center justify-center">
-      <p class="text-white lg:text-lg text-xs">© 2024 Eric Polley - The Balloon Dude</p>
-    </div>
-      <div
-      class="flex-1 text-white flex justify-center items-center"
-    >
-      <p class="text-blue-200 text-md lg:text-3xl font-bold shadow-lg hover:text-blue-700 active:text-blue-800">
-        <a href="">
-        Spokane Balloon Dude
-    </a>
-</p>
-    </div>
-    
+    <footer class="flex justify-center items-center w-full h-16 bg-blue-400">
+      <p class="text-white lg:text-lg text-xs">
+        © 2024 Eric Polley - The Balloon Dude
+      </p>
     </footer>
   </body>
 </html>
