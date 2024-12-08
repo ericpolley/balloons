@@ -102,14 +102,23 @@
             the art of balloon twisting in Spokane!
           </p>
         </div>
+
         <!--IMAGE ON FRONT PAGE-->
         <div
-          class="flex-1 items-center justify-center flex border-black border-2 rounded w-full h-[200px] md:h-[480px]"
+          class="relative flex-1 items-center justify-center flex w-full h-[200px] md:h-[480px] border-black border-2 rounded overflow-hidden"
         >
+          <!-- Background Image -->
           <img
-            src="https://cdn.pixabay.com/photo/2022/02/20/09/54/bear-7024155_1280.jpg"
-            alt="Cover Image"
-            class="w-full object-cover object-top flex w-full h-[200px] md:h-[480px] border-black border-2"
+            src="https://github.com/ericpolley/balloons/blob/main/pictures/loonericpolleycolors.jpg?raw=true"
+            alt="Background Image"
+            class="w-full h-full object-cover"
+          />
+
+          <!-- Transparent Foreground Image -->
+          <img
+            src="https://github.com/ericpolley/balloons/blob/main/pictures/BalloonsDotericPolleyDotCom.png?raw=true"
+            alt="Foreground Image"
+            class="absolute inset-0 w-auto h-auto max-w-full max-h-full m-auto"
           />
         </div>
       </div>
